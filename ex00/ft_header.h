@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_gen.c                                          :+:      :+:    :+:   */
+/*   ft_header.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jarzt <jarzt@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 10:33:18 by jarzt             #+#    #+#             */
-/*   Updated: 2023/09/12 10:33:20 by jarzt            ###   ########.fr       */
+/*   Created: 2023/09/12 10:35:36 by jarzt             #+#    #+#             */
+/*   Updated: 2023/09/12 10:35:36 by jarzt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#!/usr/bin/perl
+#ifndef FT_HEADER_H
+# define FT_HEADER_H
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
-use warnings;
-use strict;
+char	**allocate_mda(int rows, int colums);
+void	free_mda(char **mtrx, int rows);
+void print_mda(char **mtrx, int colums, int rows);
+int		open_file(char *path);
+void	save_map(char **mtrx, char *path);
 
-die "program x y density" unless (scalar(@ARGV) == 3);
-
-my ($x, $y, $density) = @ARGV;
-
-print "$y.ox\n";
-
-for (my $i = 0; $i < $y; $i++) 
-{
-	for (my $j = 0; $j < $x; $j++) 
-	{
-		if (int(rand($y) * 2) < $density) 
-		{
-			print "o";
-		}
-		else 
-		{
-			print ".";
-		}
-	}
-	print "\n";
-}
+#endif
