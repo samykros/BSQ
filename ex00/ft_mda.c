@@ -64,4 +64,45 @@ void print_mda(char **mtrx, int colums, int rows)
 			write(1, "\n", 1);
 		}
 	}
+
+}
+
+int	strlength(char *nb)
+{
+	int	i;
+
+	i = 0;
+	while (nb[i] != '\n')
+	{
+		i++;
+	}
+	return(i);
+}
+
+int mtrx_init(char **mtrx, int i, int x_start, int y_start)
+{
+	int   x;
+	int	  y;
+	int   j;
+
+	x_start = 0;
+	y_start = 0;
+	j = strlength(*mtrx);
+	while (i < j)
+	{
+		x = x_start;
+		while (x < i)
+		{	
+			y = y_start;	
+			while (y < i)
+			{
+				if	(mtrx[x][y] == 'o')
+					return(i - 1);
+				y++;
+			}
+			x++;
+		}
+		i++;
+	}
+	return (i - 1);
 }
