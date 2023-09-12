@@ -79,30 +79,69 @@ int	strlength(char *nb)
 	return(i);
 }
 
-int mtrx_init(char **mtrx, int i, int x_start, int y_start)
+int mtrx_init(char **mtrx, int i, int xstart, int ystart)
 {
 	int   x;
 	int	  y;
 	int   j;
 
-	x_start = 0;
-	y_start = 0;
 	j = strlength(*mtrx);
 	while (i < j)
 	{
-		x = x_start;
-		while (x < i)
+		y = 0;
+		while (y < i)
 		{	
-			y = y_start;	
-			while (y < i)
+			x = 0;	
+			while (x < i)
 			{
-				if	(mtrx[x][y] == 'o')
+				if	(mtrx[ystart + y][xstart + x] == 'o')
 					return(i - 1);
-				y++;
+				x++;
 			}
-			x++;
+			y++;
 		}
 		i++;
 	}
 	return (i - 1);
 }
+
+void fill(char **mtrx, int i, int xstart, int ystart)
+{
+	int   j;
+	int	  k;
+	int   b;
+
+	j = 0;
+	b = xstart;
+	while (j < i)
+	{	
+		k = 0;
+		xstart = b;
+		while (k < i)
+		{	
+				mtrx[ystart][xstart] = 'x';
+				xstart++;
+				k++;
+			
+		}
+		ystart++;
+		j++;
+	}
+}
+
+void check(char **mtrx)
+{
+    int 	i;
+	int     xstart;
+	int     ystart;
+
+	xstart = 6;
+	ystart = 4;
+	i = 0;
+	i = mtrx_init(mtrx, i, xstart, ystart);
+	fill(mtrx, i, xstart, ystart);
+	printf("\n %d", i);
+}
+
+
+

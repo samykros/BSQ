@@ -22,16 +22,15 @@ int	main()
 
 	map = allocate_mda(lines, rows);
 	save_map(map, file_path);
+	check(map);
 	print_mda(map, lines, rows);
 
-	int 	i;
-	int     x_start;
-	int     y_start;
-
-	x_start = 0;
-	y_start = 0;
-
-	i = mtrx_init(map, x_start, y_start);
-	printf("\n %d", i);
+	//cycle through all starting positions (x,y)
+	// if square made from that position is smaller, just increment the y
+	//if its at lowest y, reset y, increment x
+	// if a bigger square is found, update the new starting position
+	// is same size square is found dont update position
+	//after checking all pos, fill the square of size i from the biggest found position
+	
 	return (0);
 }

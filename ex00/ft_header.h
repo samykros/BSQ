@@ -22,7 +22,8 @@ void	free_mda(char **mtrx, int rows);
 void print_mda(char **mtrx, int colums, int rows);
 int		open_file(char *path);
 void	save_map(char **mtrx, char *path);
-int mtrx_init(char **mtrx, int x_start, int y_start);
+int mtrx_init(char **mtrx, int i, int xstart, int ystart);
 int	strlength(char **nb);
+void check (char **mtrx);
 
 #endif
