@@ -15,7 +15,53 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-void	debug(void)
+char	**allocate_mda(int colums, int rows)
 {
-	printf("Test Message.\n");
+	int	i;
+	char **mtrx;
+
+	i = 0;
+	mtrx = malloc(colums * sizeof(char*));
+	while (i < colums)
+	{
+		mtrx[i] = malloc(rows * sizeof(char));
+		i++;
+	}
+	return (mtrx);
+}
+
+void	free_mda(char **mtrx, int colums)
+{
+	int	i;
+
+	i = 0;
+	while (i < colums)
+	{
+		free(mtrx[i]);
+		i++;
+	}
+	free(mtrx);
+}
+
+void print_mda(char **mtrx, int colums, int rows)
+{
+	int	c;
+	int	r;
+
+	c = 0;
+	r = 0;
+	while(c < colums)
+	{
+		while(r < rows)
+		{
+			write(1, &mtrx[c][r], 1);
+			r++;
+		}
+		if (r == rows)
+		{
+			c++;
+			r = 0;
+			write(1, "\n", 1);
+		}
+	}
 }

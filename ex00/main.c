@@ -10,10 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_header.h"
+# include "ft_header.h"
 
 int	main()
 {
-	debug();
+	char **map;
+	char file_path[] = "map";
+	int	lines = 10;
+	int rows = 20;
+
+	map = allocate_mda(lines, rows);
+	save_map(map, file_path);
+	print_mda(map, lines, rows);
 	return (0);
 }
