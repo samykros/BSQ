@@ -22,8 +22,9 @@ int	main()
 
 	map = allocate_mda(lines, rows);
 	save_map(map, file_path);
-	check(map);
+	check(map, rows, lines);
 	print_mda(map, lines, rows);
+
 
 	//cycle through all starting positions (x,y)
 	// if square made from that position is smaller, just increment the y

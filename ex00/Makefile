@@ -1,4 +1,4 @@
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g 
 NAME = bsq
 SRC_NAME = main.c
 SRC_FLIES = ft_files.c
