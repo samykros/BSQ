@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_header.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jarzt <jarzt@student.42berlin.de>          +#+  +:+       +#+        */
+/*   By: spascual <spascual@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 10:35:36 by jarzt             #+#    #+#             */
-/*   Updated: 2023/09/12 10:35:36 by jarzt            ###   ########.fr       */
+/*   Updated: 2023/09/13 18:09:21 by spascual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdbool.h>
 
 char	**allocate_mda(int rows, int colums);
 void	free_mda(char **mtrx, int rows);

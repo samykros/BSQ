@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.c                                               :+:      :+:    :+:   */
+/*   ft_mda.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jarzt <jarzt@student.42berlin.de>          +#+  +:+       +#+        */
+/*   By: spascual <spascual@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 10:35:31 by jarzt             #+#    #+#             */
-/*   Updated: 2023/09/12 10:35:31 by jarzt            ###   ########.fr       */
+/*   Updated: 2023/09/13 18:08:57 by spascual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdbool.h>
 
 char	**allocate_mda(int colums, int rows)
 {
@@ -92,34 +93,43 @@ int lengthy(char **mtrx)
 	return(i);
 }
 
-int mtrx_init(char **mtrx, int i, int xstart, int ystart)
+int	check_box(char **mtrx, int iterator, int xstart, int ystart)
 {
-	int   x;
-	int	  y;
-	int   j;
-	int	  k;
-
-	j = strlength(mtrx);
-	k = lengthy(mtrx);
-	while (i < j)
+	int x;
+	int y;
+	
+	y = 0;
+	while (y < iterator)
 	{
-		y = 0;
-		while (y < i && (ystart + y) <= k)
-		{	
-			x = 0;	
-			while (x < i)
-			{
-				if	(mtrx[ystart + y][xstart + x] == 'o' || mtrx[ystart + y][xstart + x] == '\n')
-						return(i - 1);
-				x++;
-			}
-			y++;
+		x = 0;
+		while (x < iterator)
+		{
+			if (mtrx[ystart + y][xstart + x] == 'o' || 
+				mtrx[ystart + y][xstart + x] == '\n')
+				return (0);
+			x++;
 		}
-		if ((ystart + y) == k)
-			return(i);
-		i++;
+		y++;
 	}
-	return (i - 1);
+	return (1);
+}
+
+int	calculate_box_size(char **mtrx, int iterator, int xstart, int ystart)
+{
+	int	max_columns;
+	int	max_rows;
+
+	max_columns = column_len(mtrx);
+	max_rows = row_len(mtrx);
+	while (iterator < max_columns)
+	{
+		if (check_box(mtrx, iterator, xstart, ystart) == 0)
+			return (iterator - 1);
+		if ((ystart + iterator) == max_rows)
+			return (iterator);
+		iterator++;
+	}
+	return (iterator - 1);
 }
 
 void fill(char **mtrx, int i, int xstart, int ystart)
